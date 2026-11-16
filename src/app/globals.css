@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+/*
+  Paleta provisória (azul + verde):
+*/
+@theme inline {
+  --color-paper: #ffffff;
+  --color-mist: #f2f7fa;
+  --color-ink: #0f1b24;
+  --color-ink-soft: #55636e;
+  --color-line: rgb(15 27 36 / 0.12);
+  --color-line-light: rgb(255 255 255 / 0.18);
+  --color-brand: #0a6fb8;
+  --color-brand-deep: #08578f;
+  --color-brand-soft: #e3f0fa;
+  --color-on-brand: #ffffff;
+  --color-fresh: #1f9d6b;
+  --color-fresh-soft: #e2f4ec;
+  --color-whatsapp: #25d366;
+  --color-whatsapp-deep: #1ebe57;
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --radius-surface: 10px;
+  --shadow-float: 0 12px 40px rgb(15 27 36 / 0.16);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-micro: 180ms;
+  --header-height: 4.25rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--header-height);
+    text-size-adjust: 100%;
+    background: var(--color-paper);
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: var(--color-brand-soft);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
