@@ -1,11 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { nav, store } from "@/content/store";
+import { getStoreContact } from "@/lib/store-settings";
 import { HeaderShell } from "@/components/site/header-shell";
 import { WhatsAppMark } from "@/components/site/whatsapp-mark";
 import { Container } from "@/components/ui/container";
 
-export function Header() {
+export async function Header() {
+  const contact = await getStoreContact();
+
   return (
     <HeaderShell>
       <Container className="flex h-(--header-height) items-center justify-between gap-6">
@@ -30,17 +33,19 @@ export function Header() {
               </Link>
             ))}
           </nav>
-          <a
-            href={store.contact.whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex h-11 items-center gap-2 rounded-full bg-brand px-4 text-sm font-semibold text-on-brand transition-colors duration-200 ease-out hover:bg-navy"
-          >
-            <WhatsAppMark white />
-            <span>
-              Fazer pedido<span className="sr-only"> pelo WhatsApp (abre em nova aba)</span>
-            </span>
-          </a>
+          {contact.whatsappUrl ? (
+            <a
+              href={contact.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-11 items-center gap-2 rounded-full bg-brand px-4 text-sm font-semibold text-on-brand transition-colors duration-200 ease-out hover:bg-navy"
+            >
+              <WhatsAppMark white />
+              <span>
+                Fazer pedido<span className="sr-only"> pelo WhatsApp (abre em nova aba)</span>
+              </span>
+            </a>
+          ) : null}
         </div>
       </Container>
     </HeaderShell>

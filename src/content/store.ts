@@ -1,16 +1,8 @@
 /**
- * Identidade e contato da loja. Fonte única: header, footer, SEO e
- * WhatsApp leem daqui. Campos com TODO esperam o material do cliente.
+ * Identidade da loja (nome, textos, logo).
+ * Contatos reais (WhatsApp, e-mail, redes) ficam no banco, na tabela
+ * "store_settings": veja src/lib/store-settings.ts.
  */
-
-// TODO: trocar pelo número real (só dígitos, com 55 + DDD).
-const whatsappNumber = "5500000000000";
-const whatsappMessage = "Olá! Vim pelo site e quero fazer um pedido.";
-
-/** Link do WhatsApp com a mensagem já escrita. */
-export function whatsappLink(message: string) {
-  return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-}
 
 export const store = {
   name: "Sandra Produtos de Limpeza e Variedades",
@@ -22,16 +14,8 @@ export const store = {
     defaultTitle: "Sandra | Produtos de limpeza",
     titleTemplate: "%s | Sandra",
   },
-  contact: {
-    whatsappNumber,
-    // Trocar junto com o número acima.
-    whatsappDisplay: "(00) 00000-0000",
-    whatsappUrl: whatsappLink(whatsappMessage),
-    // E-mail, Instagram e Facebook reais.
-    email: "contato@exemplo.com.br",
-    instagramUrl: "https://www.instagram.com/",
-    facebookUrl: "https://www.facebook.com/",
-  },
+  /** Mensagem que já vem escrita ao abrir o WhatsApp pelos botões gerais. */
+  whatsappMessage: "Olá! Vim pelo site e quero fazer um pedido.",
   assets: {
     logo: "/brand/logo.png",
     logoWidth: 1200,

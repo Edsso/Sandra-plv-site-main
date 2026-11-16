@@ -1,12 +1,12 @@
-import { store } from "@/content/store";
 import { getProducts } from "@/lib/products";
+import { getStoreContact } from "@/lib/store-settings";
 import { ProductCard } from "@/components/site/product-card";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { Eyebrow, Heading } from "@/components/ui/heading";
 
 export async function ProductsSection() {
-  const result = await getProducts();
+  const [result, contact] = await Promise.all([getProducts(), getStoreContact()]);
 
   return (
     <section
@@ -26,7 +26,7 @@ export async function ProductsSection() {
         {result.status === "ok" && result.products.length > 0 ? (
           <ul className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
             {result.products.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <ProductCard key={product.id} product={product} whatsappNumber={contact.whatsappNumber} />
             ))}
           </ul>
         ) : (
@@ -36,10 +36,14 @@ export async function ProductsSection() {
                 ? "Os produtos estão sendo cadastrados."
                 : "Não foi possível carregar os produtos agora."}
             </p>
-            <p className="mt-2 text-sm text-ink-soft">Fale com a gente pelo WhatsApp para ver o que tem hoje.</p>
-            <Button href={store.contact.whatsappUrl} tone="whatsapp" pill className="mt-5">
-              Pedir pelo WhatsApp
-            </Button>
+            {contact.whatsappUrl ? (
+              <>
+                <p className="mt-2 text-sm text-ink-soft">Fale com a gente pelo WhatsApp para ver o que tem hoje.</p>
+                <Button href={contact.whatsappUrl} tone="whatsapp" pill className="mt-5">
+                  Pedir pelo WhatsApp
+                </Button>
+              </>
+            ) : null}
           </div>
         )}
       </Container>

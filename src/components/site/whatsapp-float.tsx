@@ -1,10 +1,13 @@
-import { store } from "@/content/store";
+import { getStoreContact } from "@/lib/store-settings";
 import { WhatsAppMark } from "@/components/site/whatsapp-mark";
 
-export function WhatsAppFloat() {
+export async function WhatsAppFloat() {
+  const { whatsappUrl } = await getStoreContact();
+  if (!whatsappUrl) return null;
+
   return (
     <a
-      href={store.contact.whatsappUrl}
+      href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Pedir pelo WhatsApp (abre em nova aba)"

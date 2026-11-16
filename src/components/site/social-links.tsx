@@ -1,11 +1,14 @@
-import { store } from "@/content/store";
+import type { StoreContact } from "@/lib/store-settings";
 
-const links = [
-  { href: store.contact.instagramUrl, label: "Instagram", icon: InstagramIcon },
-  { href: store.contact.facebookUrl, label: "Facebook", icon: FacebookIcon },
-] as const;
+/** Ícones das redes. Rede sem link cadastrado no banco não aparece. */
+export function SocialLinks({ contact, className = "" }: { contact: StoreContact; className?: string }) {
+  const links = [
+    { href: contact.instagramUrl, label: "Instagram", icon: InstagramIcon },
+    { href: contact.facebookUrl, label: "Facebook", icon: FacebookIcon },
+  ].filter((item): item is typeof item & { href: string } => Boolean(item.href));
 
-export function SocialLinks({ className = "" }: { className?: string }) {
+  if (links.length === 0) return null;
+
   return (
     <ul className={`flex items-center gap-3 ${className}`}>
       {links.map((item) => (
