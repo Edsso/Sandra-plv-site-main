@@ -12,11 +12,11 @@ export function Eyebrow({
   className = "",
 }: {
   children: ReactNode;
-  tone?: "soft" | "brand" | "fresh";
+  tone?: "soft" | "brand" | "teal";
   className?: string;
 }) {
   const color =
-    tone === "brand" ? "text-brand" : tone === "fresh" ? "text-fresh" : "text-ink-soft";
+    tone === "brand" ? "text-brand" : tone === "teal" ? "text-teal" : "text-ink-soft";
   return (
     <p className={`text-xs font-semibold tracking-[0.14em] uppercase ${color} ${className}`}>
       {children}

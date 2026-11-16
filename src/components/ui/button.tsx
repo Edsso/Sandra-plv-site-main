@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 
 type ButtonProps = {
-  tone?: "brand" | "fresh" | "ink" | "ghost";
+  tone?: "brand" | "navy" | "whatsapp" | "ghost";
   href?: string;
   children: ReactNode;
   pill?: boolean;
@@ -13,9 +13,9 @@ type ButtonProps = {
 };
 
 const tones = {
-  brand: "bg-brand text-on-brand hover:bg-brand-deep",
-  fresh: "bg-fresh text-on-brand hover:brightness-95",
-  ink: "bg-ink text-paper hover:bg-ink/90",
+  brand: "bg-brand text-on-brand hover:bg-navy",
+  navy: "bg-navy text-on-brand hover:bg-brand",
+  whatsapp: "bg-whatsapp text-white hover:bg-whatsapp-deep",
   ghost: "border border-line bg-transparent text-ink hover:bg-mist",
 } as const;
 

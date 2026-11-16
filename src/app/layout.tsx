@@ -1,5 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { DM_Sans } from "next/font/google";
+import { Footer } from "@/components/site/footer";
+import { Header } from "@/components/site/header";
+import { WhatsAppFloat } from "@/components/site/whatsapp-float";
 import { store } from "@/content/store";
 import "./globals.css";
 
@@ -19,7 +22,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a6fb8",
+  themeColor: "#0b3d91",
   width: "device-width",
   initialScale: 1,
   colorScheme: "light",
@@ -35,7 +38,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         >
           Ir para o conteúdo
         </a>
+        <Header />
         <main id="conteudo">{children}</main>
+        <Footer />
+        <WhatsAppFloat />
       </body>
     </html>
   );

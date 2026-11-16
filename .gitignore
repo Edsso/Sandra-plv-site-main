@@ -1,5 +1,7 @@
 node_modules
+node_modules */
 .next
+.next */
 out
 build
 .DS_Store
@@ -11,3 +13,5 @@ build
 next-env.d.ts
 
 Teste/
+Logo.pdf
+LogoAzul.pdf
