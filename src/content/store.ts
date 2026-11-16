@@ -7,6 +7,11 @@
 const whatsappNumber = "5500000000000";
 const whatsappMessage = "Olá! Vim pelo site e quero fazer um pedido.";
 
+/** Link do WhatsApp com a mensagem já escrita. */
+export function whatsappLink(message: string) {
+  return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+}
+
 export const store = {
   name: "Sandra Produtos de Limpeza e Variedades",
   shortName: "Sandra Produtos de Limpeza e Variedades",
@@ -21,7 +26,7 @@ export const store = {
     whatsappNumber,
     // Trocar junto com o número acima.
     whatsappDisplay: "(00) 00000-0000",
-    whatsappUrl: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`,
+    whatsappUrl: whatsappLink(whatsappMessage),
     // E-mail, Instagram e Facebook reais.
     email: "contato@exemplo.com.br",
     instagramUrl: "https://www.instagram.com/",
@@ -37,5 +42,6 @@ export const store = {
 /** Links do menu. Âncoras da home: cada seção nova entra aqui. */
 export const nav = [
   { href: "/#inicio", label: "Início" },
+  { href: "/#produtos", label: "Produtos" },
   { href: "/#contato", label: "Contato" },
 ] as const;
