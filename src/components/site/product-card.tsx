@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { formatPrice, type Product } from "@/lib/products";
 import { whatsappLink } from "@/lib/store-settings";
 import { WhatsAppMark } from "@/components/site/whatsapp-mark";
@@ -17,10 +18,23 @@ export function ProductCard({
 
   return (
     <li className="product-card">
-      {/* Espaço da foto: a imagem entra no próximo passo (Supabase Storage). */}
-      <div className="product-thumb" aria-hidden="true">
-        <span>{product.name.charAt(0)}</span>
-      </div>
+      {product.imageUrl ? (
+        <div className="product-thumb has-image">
+          <Image
+            src={product.imageUrl}
+            alt={product.name}
+            fill
+            sizes="(min-width: 1024px) 280px, (min-width: 768px) 33vw, 50vw"
+            className="product-photo object-cover"
+            draggable={false}
+          />
+        </div>
+      ) : (
+        /* Sem foto cadastrada: inicial do produto. */
+        <div className="product-thumb" aria-hidden="true">
+          <span>{product.name.charAt(0)}</span>
+        </div>
+      )}
       <div className="flex flex-1 flex-col p-4">
         {product.category ? (
           <p className="text-[11px] font-semibold tracking-[0.12em] text-teal uppercase">{product.category}</p>

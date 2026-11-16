@@ -208,9 +208,31 @@
 
 .product-thumb {
   display: grid;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 4 / 5;
   place-items: center;
   background: linear-gradient(160deg, var(--color-brand-soft), var(--color-teal-soft));
+}
+
+.product-thumb.has-image {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-mist);
+}
+
+.product-photo {
+  transition: transform 400ms var(--ease-out);
+}
+
+.product-card:hover .product-photo,
+.product-card:focus-within .product-photo {
+  transform: scale(1.04);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .product-card:hover .product-photo,
+  .product-card:focus-within .product-photo {
+    transform: none;
+  }
 }
 
 .product-thumb span {
